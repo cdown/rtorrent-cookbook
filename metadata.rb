@@ -1,0 +1,7 @@
+name             'rtorrent'
+maintainer       'Chris Down'
+maintainer_email 'chris@chrisdown.name'
+license          'ISC'
+description      'Installs rtorrent to run inside tmux'
+long_description 'Installs rtorrent to run inside tmux'
+version          '0.0.0'

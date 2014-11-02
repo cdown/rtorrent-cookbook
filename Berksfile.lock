@@ -1,0 +1,7 @@
+DEPENDENCIES
+  rtorrent
+    path: .
+    metadata: true
+
+GRAPH
+  rtorrent (0.1.0)

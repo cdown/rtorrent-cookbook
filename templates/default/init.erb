@@ -1,0 +1,19 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          rtorrent
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       rtorrent torrent client, running within tmux
+### END INIT INFO
+
+rtorrent_user=<%= node['rtorrent']['user'] %>
+
+case $1 in
+    start) sudo -u "$rtorrent_user" tmux new-session -d -s rtorrent rtorrent ;;
+    stop) pkill -u "$rtorrent_user" -f 'rtorrent$' ;;
+    restart) "$0" stop && sleep 30 && "$0" start ;;
+    status) pgrep -u "$rtorrent_user" -f 'rtorrent$' ;;
+esac
