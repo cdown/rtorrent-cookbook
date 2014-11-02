@@ -1,11 +1,8 @@
-min_peers = <%= node['rtorrent']['config']['min_peers'] %>
-max_peers = <%= node['rtorrent']['config']['max_peers'] %>
-max_uploads = <%= node['rtorrent']['config']['max_uploads'] %>
+session = <%= node['rtorrent']['path']['session'] %>
+directory = <%= node['rtorrent']['path']['data'] %>
 
 port_range = <%= node['rtorrent']['config']['port'] %>-<%=node['rtorrent']['config']['port'] %>
 
-dht = <%= node['rtorrent']['config']['dht'] %>
-peer_exchange = <%= node['rtorrent']['config']['peer_exchange'] %>
-
-session = <%= node['rtorrent']['path']['session'] %>
-directory = <%= node['rtorrent']['path']['data'] %>
+<% node['rtorrent']['config'].dup.reject{|k,v| k=='port'}.map do |key, value| -%>
+<%= "#{key} = #{value}" %>
+<% end -%>
