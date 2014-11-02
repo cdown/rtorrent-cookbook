@@ -1,11 +1,11 @@
 user 'rtorrent user' do
   username lazy { node['rtorrent']['user'] }
   home lazy { node['rtorrent']['path']['user'] }
-  supports :manage_home => true
+  supports manage_home: true
   system true
 end
 
-%w{data session}.each do |dir|
+%w(data session).each do |dir|
   directory "rtorrent #{dir} dir" do
     path lazy { node['rtorrent']['path'][dir] }
     owner lazy { node['rtorrent']['user'] }
@@ -13,7 +13,7 @@ end
   end
 end
 
-%w{rtorrent tmux}.each do |package_name|
+%w(rtorrent tmux).each do |package_name|
   package package_name do
     action :upgrade
   end
@@ -41,6 +41,6 @@ template 'rtorrent config' do
 end
 
 service 'rtorrent' do
-  supports :status => true, :restart => true
+  supports status: true, restart: true
   action [:enable, :start]
 end
