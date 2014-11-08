@@ -12,8 +12,6 @@ rvm:
   - 2.0.0
 before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
-before_script:
-  - bundle exec berks install
 script:
   - bundle exec foodcritic -f any .
   - bundle exec rubocop
