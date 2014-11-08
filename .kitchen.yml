@@ -13,3 +13,6 @@ suites:
     run_list:
       - recipe[rtorrent::default]
     attributes:
+      rtorrent:
+        config:
+          port: 1337
