@@ -5,9 +5,24 @@ user 'rtorrent user' do
   system true
 end
 
-%w(data session).each do |dir|
-  directory "rtorrent #{dir} dir" do
+%w(data_base_dir data session watch).each do |dir|
+  directory "rtorrent base #{dir} dir" do
     path lazy { node['rtorrent']['path'][dir] }
+    owner lazy { node['rtorrent']['user'] }
+    mode '0755'
+  end
+end
+
+# TODO: Make this runtime, not compile-time
+node['rtorrent']['watches'].each do |watch_name|
+  directory "#{watch_name} watch torrent dir" do
+    path lazy { "#{node['rtorrent']['path']['watch']}/#{watch_name}" }
+    owner lazy { node['rtorrent']['user'] }
+    mode '0755'
+  end
+
+  directory "#{watch_name} watch data dir" do
+    path lazy { "#{node['rtorrent']['path']['data_base_dir']}/#{watch_name}" }
     owner lazy { node['rtorrent']['user'] }
     mode '0755'
   end

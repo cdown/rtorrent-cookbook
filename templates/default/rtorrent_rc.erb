@@ -3,6 +3,15 @@ directory = <%= node['rtorrent']['path']['data'] %>
 
 port_range = <%= node['rtorrent']['config']['port'] %>-<%=node['rtorrent']['config']['port'] %>
 
+<% node['rtorrent']['watches'].each do |name| -%>
+<%= %Q{schedule = watch_#{name}, 10, 10, "load.normal=#{node['rtorrent']['path']['watch']}/#{name}/*.torrent,d.directory.set=#{node['rtorrent']['path']['data_base_dir']}/#{name}/"} %>
+<% end -%>
+
+schedule = tied_directory, 10, 10, start_tied=
+schedule = untied_directory, 10, 10, stop_untied=
+schedule = untied_directory, 10, 10, close_untied=
+schedule = untied_directory, 10, 10, remove_untied=
+
 <% node['rtorrent']['config'].dup.reject{|k,v| k=='port'}.map do |key, value| -%>
 <%= "#{key} = #{value}" %>
 <% end -%>
