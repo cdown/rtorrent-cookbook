@@ -1,10 +1,15 @@
 home_dir = '/srv/rtorrent'
+data_base_dir = "#{home_dir}/data"
 
 default['rtorrent']['user'] = 'rtorrent'
 
-default['rtorrent']['path']['user'] = home_dir
-default['rtorrent']['path']['data'] = "#{home_dir}/data"
+default['rtorrent']['path']['data'] = "#{data_base_dir}/unknown"
+default['rtorrent']['path']['data_base_dir'] = data_base_dir
 default['rtorrent']['path']['session'] = "#{home_dir}/session"
+default['rtorrent']['path']['user'] = home_dir
+default['rtorrent']['path']['watch'] = "#{home_dir}/watch"
+
+default['rtorrent']['watches'] = %w(btn ptp whatcd tpb)
 
 default['rtorrent']['config']['min_peers'] = 250
 default['rtorrent']['config']['max_peers'] = 500
