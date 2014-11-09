@@ -15,3 +15,9 @@ describe 'rtorrent' do
     expect(service('rtorrent')).to be_enabled
   end
 end
+
+describe 'rtorrent config' do
+  it 'has the watches listed' do
+    expect(file('/srv/rtorrent/.rtorrent.rc')).to contain('blerglewergle')
+  end
+end
