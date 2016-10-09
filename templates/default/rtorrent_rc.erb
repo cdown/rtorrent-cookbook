@@ -15,3 +15,6 @@ schedule = untied_directory, 10, 10, remove_untied=
 <% node['rtorrent']['config'].dup.reject{|k,v| k=='port'}.map do |key, value| -%>
 <%= "#{key} = #{value}" %>
 <% end -%>
+
+view_sort_current = active,greater=d.get_up_rate=
+schedule = filter_active,12,20,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\" ;view_sort=active"
