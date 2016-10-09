@@ -1,7 +1,7 @@
 user 'rtorrent user' do
   username lazy { node['rtorrent']['user'] }
   home lazy { node['rtorrent']['path']['user'] }
-  supports manage_home: true
+  manage_home true
   system true
 end
 
