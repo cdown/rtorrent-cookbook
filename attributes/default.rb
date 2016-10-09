@@ -9,7 +9,7 @@ default['rtorrent']['path']['session'] = "#{home_dir}/session"
 default['rtorrent']['path']['user'] = home_dir
 default['rtorrent']['path']['watch'] = "#{home_dir}/watch"
 
-default['rtorrent']['watches'] = %w(btn ptp whatcd tpb)
+default['rtorrent']['watches'] = []
 
 default['rtorrent']['config']['min_peers'] = 250
 default['rtorrent']['config']['max_peers'] = 500
