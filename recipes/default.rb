@@ -28,7 +28,7 @@ node['rtorrent']['watches'].each do |watch_name|
   end
 end
 
-%w(rtorrent tmux).each do |package_name|
+%w(sudo rtorrent tmux).each do |package_name|
   package package_name do
     action :upgrade
   end
