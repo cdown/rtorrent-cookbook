@@ -16,7 +16,7 @@ case $1 in
         sudo -u "$rtorrent_user" tmux new-session -d -s rtorrent rtorrent
     ;;
     stop)
-        pkill -u "$rtorrent_user" -x rtorrent
+        sudo -u "$rtorrent_user" pkill -u "$rtorrent_user" -x rtorrent
 
         i=0
         while sleep 2; do
