@@ -4,4 +4,4 @@ DEPENDENCIES
     metadata: true
 
 GRAPH
-  rtorrent (1.0.0)
+  rtorrent (1.0.1)
