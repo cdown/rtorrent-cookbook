@@ -31,8 +31,6 @@ case $1 in
 
             i=$(( i + 1 ))
         done
-
-        "$0" start
     ;;
     restart)
         "$0" stop && "$0" start
