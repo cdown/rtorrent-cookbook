@@ -53,6 +53,7 @@ template 'rtorrent config' do
   path lazy { "#{node['rtorrent']['path']['user']}/.rtorrent.rc" }
   owner lazy { node['rtorrent']['user'] }
   mode '0644'
+  notifies :restart, 'service[rtorrent]'
 end
 
 service 'rtorrent' do
