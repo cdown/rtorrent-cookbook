@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.berkshelf.enabled = true
   config.omnibus.chef_version = :latest
 
-  config.vm.box = 'chef/debian-7.6'
+  config.vm.box = 'bento/debian-7.8'
   config.vm.hostname = 'rtorrent-vagrant'
   config.vm.network :private_network, type: 'dhcp'
 
