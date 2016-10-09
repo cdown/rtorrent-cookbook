@@ -12,8 +12,27 @@
 rtorrent_user=<%= node['rtorrent']['user'] %>
 
 case $1 in
-    start) sudo -u "$rtorrent_user" tmux new-session -d -s rtorrent rtorrent ;;
-    stop) pkill -u "$rtorrent_user" -f 'rtorrent$' ;;
-    restart) "$0" stop && sleep 30 && "$0" start ;;
+    start)
+        sudo -u "$rtorrent_user" tmux new-session -d -s rtorrent rtorrent
+    ;;
+    stop)
+        pkill -u "$rtorrent_user" -x rtorrent
+
+        i=0
+        while sleep 2; do
+            if pgrep -u "$rtorrent_user" -x rtorrent >/dev/null; then
+                if [ "$i" -gt 15 ]; then
+                    echo 'Failed to stop rtorrent' >&2
+                    exit 1
+                fi
+            else
+                break
+            fi
+
+            let i++
+        done
+
+        "$0" start
+    ;;
     status) pgrep -u "$rtorrent_user" -f 'rtorrent$' ;;
 esac
